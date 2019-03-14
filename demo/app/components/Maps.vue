@@ -41,7 +41,7 @@ export default {
       disableScroll: false,
       disableTilt: false
     }
-  },
+  }/* ,
   mounted () {
     const self = this
     this.$root.$on('fixCurrentLocation', (options) => {
@@ -98,7 +98,7 @@ export default {
       })
       .catch((error) => console.log("mapbox addPolygon error: " + error));
     })
-  }
+  } */
 }
 </script>
 
