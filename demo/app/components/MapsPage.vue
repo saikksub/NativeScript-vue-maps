@@ -21,6 +21,11 @@ export default {
       type: String,
       required: true,
       default: () => { return ''}
+    },
+    config: {
+      type: Object,
+      required: true,
+      default: () => { return {} }
     }
   },
   components: {
@@ -120,21 +125,16 @@ export default {
           break
         case 'ADD_POLYLINE':
           console.log('ADD_POLYLINE')
+          let directions = []
+          if ('directions' in this.config && this.config.directions.constructor === [].constructor) {
+            directions = Object.assign([], this.config.directions)
+          }
           const data = {
             id: 1, // optional, can be used in 'removePolylines'
             color: '#336699', // Set the color of the line (default black)
             width: 7, // Set the width of the line (default 5)
             opacity: 0.6, //Transparency / alpha, ranging 0-1. Default fully opaque (1).
-            points: [
-                {
-                    'lat': 28.630322, // mandatory
-                    'lng': 77.205690 // mandatory
-                },
-                {
-                    'lat': 26.854677,
-                    'lng': 80.945953
-                }
-            ]
+            points: directions
           }
           args.map.addPolyline(data)
             .then(() => {
